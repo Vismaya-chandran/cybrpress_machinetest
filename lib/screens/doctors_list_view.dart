@@ -21,7 +21,6 @@ class _DoctorsListViewState extends State<DoctorsListView> {
   void initState() {
     controller = Get.put(ApiController());
     controller.fetchDoctors();
-    controller.getDoctorDetails();
     super.initState();
   }
 

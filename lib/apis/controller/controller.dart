@@ -35,12 +35,12 @@ class ApiController extends GetxController {
     }
   }
 
-  void getDoctorDetails() async {
+  void getDoctorDetails(String id) async {
     try {
       isLoading(true);
       var response = await http.post(
         Uri.parse('http://65.2.162.150/api/v1/test/getSingleDoctor'),
-        body: {"_id": "64deff8491df43928bb51889"},
+        body: {"_id": id},
         headers: {
           'Authorization':
               '''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGRlZmE3NjQxOTgyODcyYTNiYWVkNTYiLCJpYXQiOjE3MjQzMjgzMDMsImV4cCI6MTc1NTg2NDMwM30.CCDbn8FR5_XOsN5yQdDlhIxzSh_AlvwFGHmhEHH9IkE''',

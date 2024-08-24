@@ -62,6 +62,9 @@ class _BookAppointmentViewState extends State<BookAppointmentView> {
                   patientController.updateName(value);
                 },
               ),
+              const SizedBox(
+                height: 15,
+              ),
               CustomTextField(
                 hintText: "Age",
                 controller: ageController,
@@ -70,6 +73,9 @@ class _BookAppointmentViewState extends State<BookAppointmentView> {
                 onChanged: (value) {
                   patientController.updateAge(value);
                 },
+              ),
+              const SizedBox(
+                height: 15,
               ),
               CustomTextField(
                 hintText: "Email",
@@ -80,6 +86,9 @@ class _BookAppointmentViewState extends State<BookAppointmentView> {
                   patientController.updateEmail(value);
                 },
               ),
+              const SizedBox(
+                height: 15,
+              ),
               CustomTextField(
                 hintText: "Phone",
                 controller: nameController,
@@ -88,6 +97,9 @@ class _BookAppointmentViewState extends State<BookAppointmentView> {
                 onChanged: (value) {
                   patientController.updatePhone(value);
                 },
+              ),
+              const SizedBox(
+                height: 15,
               ),
               CustomTextField(
                 hintText: "Notes",
@@ -108,12 +120,15 @@ class _BookAppointmentViewState extends State<BookAppointmentView> {
               const SizedBox(
                 height: 15,
               ),
-              const Text(
-                "Doctor Details",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
+              Align(
+                alignment: Alignment.topLeft,
+                child: const Text(
+                  "Doctor Details",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
               const SizedBox(
                 height: 15,
@@ -121,8 +136,8 @@ class _BookAppointmentViewState extends State<BookAppointmentView> {
               Row(
                 children: [
                   Container(
-                    height: 60,
-                    width: 60,
+                    height: 100,
+                    width: 100,
                     alignment: Alignment.center,
                     color: Colors.grey.shade300,
                     child: Image.asset(

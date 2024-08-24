@@ -1,7 +1,10 @@
+import 'package:cyberpress_machinetest/apis/controller/controller.dart';
 import 'package:cyberpress_machinetest/apis/models/doctors_model.dart';
 import 'package:cyberpress_machinetest/core/constants/images.dart';
 import 'package:cyberpress_machinetest/core/widgets/primary_button.dart';
+import 'package:cyberpress_machinetest/screens/book_appointment_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DoctorsDetailsView extends StatefulWidget {
   const DoctorsDetailsView({super.key, required this.doctorDetails});
@@ -11,6 +14,15 @@ class DoctorsDetailsView extends StatefulWidget {
 }
 
 class _DoctorsDetailsViewState extends State<DoctorsDetailsView> {
+  late ApiController controller;
+
+  @override
+  void initState() {
+    controller = Get.put(ApiController());
+    controller.getDoctorDetails(widget.doctorDetails.id);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final kSize = MediaQuery.of(context).size;
@@ -18,26 +30,37 @@ class _DoctorsDetailsViewState extends State<DoctorsDetailsView> {
       body: SizedBox(
         height: kSize.height,
         width: kSize.width,
-        child: Column(
+        child: Stack(
+          clipBehavior: Clip.antiAlias,
+          alignment: Alignment.bottomCenter,
           children: [
-            Container(
-              color: Colors.black54,
-              height: 250,
-              width: kSize.width,
-              child: Image.asset(
-                AppImages.doctorImage,
-                height: 150,
-                color: Colors.grey,
-              ),
+            Column(
+              children: [
+                Container(
+                  color: Colors.black87,
+                  height: 300,
+                  width: kSize.width,
+                  child: Image.asset(
+                    AppImages.doctorBg,
+                    height: 100,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                BackButton(
+                  onPressed: () {},
+                  color: Colors.white,
+                ),
+                // doctorDetails(widget.doctorDetails)
+              ],
             ),
-            const SizedBox(
-              height: 25,
-            ),
-            BackButton(
-              onPressed: () {},
-              color: Colors.white,
-            ),
-            doctorDetails(widget.doctorDetails)
+            Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: doctorDetails(widget.doctorDetails))
           ],
         ),
       ),
@@ -50,8 +73,9 @@ class _DoctorsDetailsViewState extends State<DoctorsDetailsView> {
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+              topLeft: Radius.circular(30), topRight: Radius.circular(30))),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +110,7 @@ class _DoctorsDetailsViewState extends State<DoctorsDetailsView> {
           ),
           const SizedBox(height: 5),
           const Text(
-            "The holder of an accredited acdemic degree. A medical practitioner, including: Audiologist. Dentist.Optometrist.Physician.Other roles.\n\n The holder of an accredited acdemic degree. A medical practitioner, including: Audiologist. Dentist.Optometrist.Physician.Other roles.",
+            "The holder of an accredited acdemic degree. A medical practitioner, including: Audiologist. Dentist.Optometrist.Physician.Other roles.\n\nThe holder of an accredited acdemic degree. A medical practitioner, including: Audiologist. Dentist.Optometrist.Physician.Other roles.",
             style: TextStyle(color: Colors.grey),
           ),
           const SizedBox(height: 25),
@@ -117,8 +141,17 @@ class _DoctorsDetailsViewState extends State<DoctorsDetailsView> {
               )
             ],
           ),
-          const Spacer(),
-          PrimaryButton(label: "BOOK AN APPOINTMENT", onPressed: () {}),
+          const SizedBox(height: 15),
+          // const Spacer(),
+          PrimaryButton(
+              label: "BOOK AN APPOINTMENT",
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BookAppointmentView(),
+                    ));
+              }),
           const SizedBox(height: 15)
         ],
       ),

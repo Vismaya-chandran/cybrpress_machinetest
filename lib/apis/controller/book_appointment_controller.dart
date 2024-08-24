@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pdf/widgets.dart' as pdf;
+import 'package:pdf/widgets.dart' as pdfwidget;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
@@ -31,22 +31,24 @@ class AppointmentController extends GetxController {
   }
 
   Future<void> generatePDF(String doctorDetails) async {
-    final pdf = pdf.Document();
+    final pdf = pdfwidget.Document();
     pdf.addPage(
-      pdf.Page(
-        build: (pdf.Context context) {
-          return pdf.Column(
-            crossAxisAlignment: pdf.CrossAxisAlignment.start,
+      pdfwidget.Page(
+        build: (pdfwidget.Context context) {
+          return pdfwidget.Column(
+            crossAxisAlignment: pdfwidget.CrossAxisAlignment.start,
             children: [
-              pdf.Text('Patient Details', style: pdf.TextStyle(fontSize: 24)),
-              pdf.Text('Name: ${name.value}'),
-              pdf.Text('Age: ${age.value}'),
-              pdf.Text('Email: ${email.value}'),
-              pdf.Text('Phone: ${phone.value}'),
-              pdf.Text('Notes: ${notes.value}'),
-              pdf.SizedBox(height: 20),
-              pdf.Text('Doctor Details', style: pdf.TextStyle(fontSize: 24)),
-              pdf.Text(doctorDetails),
+              pdfwidget.Text('Patient Details',
+                  style: const pdfwidget.TextStyle(fontSize: 24)),
+              pdfwidget.Text('Name: ${name.value}'),
+              pdfwidget.Text('Age: ${age.value}'),
+              pdfwidget.Text('Email: ${email.value}'),
+              pdfwidget.Text('Phone: ${phone.value}'),
+              pdfwidget.Text('Notes: ${notes.value}'),
+              pdfwidget.SizedBox(height: 20),
+              pdfwidget.Text('Doctor Details',
+                  style: const pdfwidget.TextStyle(fontSize: 24)),
+              pdfwidget.Text(doctorDetails),
             ],
           );
         },
